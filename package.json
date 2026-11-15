@@ -1,0 +1,8 @@
+{
+  "name": "mj-jogos",
+  "version": "1.0.0",
+  "description": "MJ Jogos - perguntas e respostas com aprovação manual de pagamentos",
+  "main": "server.js",
+  "scripts": {"start": "node server.js"},
+  "dependencies": {"express": "^4.21.2"}
+}
