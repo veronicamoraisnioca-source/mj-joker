@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#020b2d">
+<title>MJ JOKER — Jogue, Responda, Divirta-se!</title>
+<style>
+:root{--navy:#020a27;--blue:#075dff;--gold:#ffd21a;--white:#f7f9ff;--line:#176dff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% 0%,#123b9b 0,#06133e 38%,#010720 78%);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1200px,96%);margin:auto}
+header{position:sticky;top:0;z-index:10;background:#020925ed;border:1px solid #176dff;border-radius:0 0 22px 22px;box-shadow:0 5px 25px #006aff55;backdrop-filter:blur(10px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 18px}
+.brand{font-size:clamp(22px,4vw,35px);font-weight:1000;font-style:italic;color:var(--gold);text-shadow:0 2px 0 #8c4d00,0 0 18px #ffbf00}
+.brand span{font-size:1.3em}
+nav{display:flex;gap:clamp(8px,2vw,26px);align-items:center}
+nav a{font-weight:bold;font-size:14px;text-align:center;padding:8px 4px}
+nav a:hover{color:var(--gold)}
+.actions{display:flex;gap:9px}
+.btn{border:0;border-radius:28px;padding:12px 18px;font-weight:900;cursor:pointer;background:linear-gradient(#167aff,#0035d8);color:white;box-shadow:0 3px 0 #001b78}
+.btn.gold{background:linear-gradient(#ffe66b,#ffb900);color:#111}
+.hero{margin:16px auto 12px;min-height:300px;border:2px solid #137bff;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 1.5fr 1fr;align-items:center;padding:22px;background:radial-gradient(circle at 50% 50%,#176eff 0,#082b86 40%,#020a29 80%);box-shadow:inset 0 0 45px #087bff88,0 0 24px #006aff55;text-align:center}
+.jester{font-size:clamp(85px,14vw,155px);filter:drop-shadow(0 0 16px #00aaff)}
+.hero-logo{font-size:clamp(48px,9vw,100px);font-weight:1000;line-height:.85;font-style:italic;letter-spacing:-5px;color:#fff;text-shadow:4px 5px 0 #061044,0 0 12px #64baff}
+.hero-logo b{color:var(--gold);display:block;font-size:1.15em;text-shadow:4px 5px 0 #774300,0 0 20px #ffd000}
+.tag{display:inline-block;margin-top:18px;background:linear-gradient(90deg,#ffb900,#ffe95b);color:#111;padding:10px 18px;border-radius:8px;font-weight:1000;font-size:clamp(14px,2vw,22px);transform:skew(-7deg)}
+.hero-side{font-size:clamp(20px,3vw,34px);font-weight:1000;font-style:italic;text-shadow:2px 3px #00113f}
+.hero-side strong{color:var(--gold)}
+.category-strip{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:12px 0 20px;padding:10px;border:1px solid #176dff;border-radius:20px;background:#020b2de8}
+.category-strip a{display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;font-size:12px;font-weight:bold;padding:6px 2px}
+.category-strip span{font-size:30px;filter:drop-shadow(0 0 7px #00aaff)}
+.section-title{display:flex;align-items:center;gap:18px;justify-content:center;margin:16px 0;font-size:clamp(23px,4vw,34px);font-weight:1000}
+.section-title:before,.section-title:after{content:"";height:2px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
+.section-title:after{background:linear-gradient(90deg,var(--gold),transparent)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.card{position:relative;min-height:180px;border:2px solid #5baaff;border-radius:17px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;text-align:center;padding:15px;background:linear-gradient(145deg,#0c68d8,#06143f 70%);box-shadow:inset 0 0 25px #009dff88,0 0 12px #007bff44;transition:.2s}
+.card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.card .emoji{position:absolute;inset:5px 0 auto;font-size:76px;filter:drop-shadow(0 0 12px #00aaff)}
+.card h3{position:relative;margin:0 0 10px;text-transform:uppercase;text-shadow:2px 3px #000;font-size:clamp(15px,2vw,20px)}
+.card button{position:relative;background:linear-gradient(#ffe65c,#ffb900);border:0;border-radius:20px;padding:8px 18px;font-weight:1000;cursor:pointer}
+.info{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin:18px 0;padding:18px;border:1px solid #176dff;border-radius:20px;background:#020a29;box-shadow:0 0 18px #006aff33}
+.info h3{margin:0 0 10px;font-size:20px}.info p{margin:7px 0;line-height:1.45;font-size:14px}
+.info article+article{border-left:1px solid #4d8cff;padding-left:18px}
+.badge{color:var(--gold);font-weight:bold}
+footer{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px;border-top:2px solid #075dff;color:#dbe6ff;font-size:13px}
+.quiz{display:none;margin:20px auto;padding:22px;background:#06133e;border:2px solid #1680ff;border-radius:18px;max-width:760px}
+.quiz.active{display:block}.quiz h2{color:var(--gold)}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answers button{padding:13px;border:1px solid #3994ff;border-radius:10px;background:#0b2d75;color:white;font-weight:bold;cursor:pointer}
+.answers button:hover{background:#1454c5}.feedback{min-height:28px;font-weight:bold;color:var(--gold)}
+@media(max-width:800px){.nav{flex-wrap:wrap;justify-content:center}nav{order:3;width:100%;justify-content:space-around}.hero{grid-template-columns:1fr 2fr;}.hero-side{grid-column:1/-1}.category-strip{grid-template-columns:repeat(4,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.info{grid-template-columns:1fr}.info article+article{border-left:0;border-top:1px solid #4d8cff;padding:14px 0 0}}
+@media(max-width:430px){.actions{width:100%;justify-content:center}.hero{grid-template-columns:1fr;padding:15px}.jester{font-size:75px}.hero-logo{font-size:58px}.hero-side{font-size:22px}.card{min-height:165px}.card .emoji{font-size:64px}.answers{grid-template-columns:1fr}footer{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<header><div class="nav wrap">
+<a class="brand" href="#"><span>👑</span> MJ JOKER</a>
+<nav><a href="#inicio">🏠<br>Início</a><a href="#jogos">🎮<br>Jogos</a><a href="#ranking">🏆<br>Ranking</a><a href="#sobre">ℹ️<br>Sobre</a><a href="#contacto">🎧<br>Contacto</a></nav>
+<div class="actions"><a class="btn" href="#jogos">▶ Jogar</a><a class="btn gold" href="#jogos">Entrar</a></div>
+</div></header>
+<main class="wrap" id="inicio">
+<section class="hero">
+<div class="jester">🃏</div>
+<div><div class="hero-logo"><b>MJ</b>JOKER</div><div class="tag">Jogue • Responda • Divirta-se!</div></div>
+<div class="hero-side">Mostre o seu conhecimento e <strong>aprenda algo novo!</strong></div>
+</section>
+<section class="category-strip" aria-label="Categorias">
+<a href="#jogos"><span>🧠</span>Conhecimentos<br>Gerais</a><a href="#jogos"><span>🌍</span>Geografia</a><a href="#jogos"><span>🇲🇿</span>Cultura<br>Moçambicana</a><a href="#jogos"><span>⚽</span>Desporto</a><a href="#jogos"><span>📚</span>Português</a><a href="#jogos"><span>🧪</span>Ciência e<br>Tecnologia</a><a href="#jogos"><span>🏛️</span>História</a><a href="#jogos"><span>🏆</span>Desafios<br>Especiais</a>
+</section>
+<h2 class="section-title" id="jogos">⭐ NOSSOS JOGOS ⭐</h2>
+<section class="grid">
+<div class="card"><div class="emoji">🧠</div><div><h3>Quiz de conhecimentos gerais</h3><button onclick="startQuiz('geral')">Jogar Agora ▶</button></div></div>
+<div class="card"><div class="emoji">🌍</div><div><h3>Desafio de geografia</h3><button onclick="startQuiz('geo')">Jogar Agora ▶</button></div></div>
+<div class="card"><div class="emoji">🇲🇿</div><div><h3>Cultura de Moçambique</h3><button onclick="startQuiz('moz')">Jogar Agora ▶</button></div></div>
+<div class="card"><div class="emoji">⚽</div><div><h3>Quiz de desporto</h3><button onclick="startQuiz('sport')">Jogar Agora ▶</button></div></div>
+<div class="card"><div class="emoji">📚</div><div><h3>Desafio de português</h3><button onclick="startQuiz('pt')">Jogar Agora ▶</button></div></div>
+<div class="card"><div class="emoji">🧪</div><div><h3>Ciência e tecnologia</h3><button onclick="startQuiz('science')">Jogar Agora ▶</button></div></div>
+<div class="card"><div class="emoji">🏛️</div><div><h3>História</h3><button onclick="startQuiz('history')">Jogar Agora ▶</button></div></div>
+<div class="card"><div class="emoji">🏆</div><div><h3>Desafios especiais</h3><button onclick="startQuiz('special')">Jogar Agora ▶</button></div></div>
+</section>
+<section class="quiz" id="quiz"><h2 id="qtitle">Quiz</h2><p id="question"></p><div class="answers" id="answers"></div><p class="feedback" id="feedback"></p><button class="btn gold" onclick="nextQuestion()">Próxima pergunta</button> <button class="btn" onclick="closeQuiz()">Fechar</button></section>
+<section class="info" id="sobre">
+<article><h3>ℹ️ Como Começar?</h3><p>1️⃣ Escolha uma categoria.</p><p>2️⃣ Responda às perguntas.</p><p>3️⃣ Veja a sua pontuação e aprenda.</p><p class="badge">Diversão gratuita para todos!</p></article>
+<article id="ranking"><h3>🏆 Ranking</h3><p>O seu resultado aparece no final de cada desafio.</p><p>Pratique, aprenda e tente melhorar a sua pontuação!</p><p class="badge">Conhecimento é a melhor recompensa.</p></article>
+<article id="contacto"><h3>📞 Contacto</h3><p>Para dúvidas ou sugestões sobre o MJ JOKER, fale com a equipa responsável pelo canal de contacto indicado pelo administrador do site.</p><p class="badge">Estamos aqui para ajudar!</p></article>
+</section>
+</main>
+<footer class="wrap"><strong class="brand">👑 MJ JOKER</strong><span>🛡️ Jogue com responsabilidade e respeito!</span><span>© 2026 MJ JOKER. Todos os direitos reservados.</span></footer>
+<script>
+const bank={
+geral:[["Qual é o maior planeta do Sistema Solar?",["Terra","Júpiter","Marte","Vénus"],1],["Quantos lados tem um hexágono?",["5","6","7","8"],1]],
+geo:[["Qual é a capital de Moçambique?",["Beira","Nampula","Maputo","Quelimane"],2],["Em que continente fica o Egipto?",["Ásia","Europa","África","América"],2]],
+moz:[["Qual é a língua oficial de Moçambique?",["Inglês","Português","Francês","Suaíli"],1],["Qual é a moeda de Moçambique?",["Rand","Metical","Kwanza","Euro"],1]],
+sport:[["Quantos jogadores de cada equipa estão em campo no futebol?",["9","10","11","12"],2]],
+pt:[["Qual destas palavras é um substantivo?",["Correr","Bonito","Casa","Rapidamente"],2]],
+science:[["Qual é o planeta conhecido como planeta vermelho?",["Vénus","Marte","Saturno","Mercúrio"],1]],
+history:[["Em que ano Moçambique tornou-se independente?",["1974","1975","1980","1990"],1]],
+special:[["Quanto é 12 × 8?",["86","92","96","108"],2]]
+};
+let questions=[],idx=0,score=0,answered=false;
+function startQuiz(key){questions=bank[key]||bank.geral;idx=0;score=0;document.getElementById('quiz').classList.add('active');document.getElementById('quiz').scrollIntoView({behavior:'smooth'});showQuestion()}
+function showQuestion(){answered=false;let q=questions[idx];document.getElementById('qtitle').textContent=`Desafio ${idx+1} de ${questions.length}`;document.getElementById('question').textContent=q[0];document.getElementById('feedback').textContent='';let box=document.getElementById('answers');box.innerHTML='';q[1].forEach((a,i)=>{let b=document.createElement('button');b.textContent=a;b.onclick=()=>answer(i);box.appendChild(b)})}
+function answer(i){if(answered)return;answered=true;let correct=questions[idx][2];if(i===correct){score++;document.getElementById('feedback').textContent='✅ Resposta correta!'}else{document.getElementById('feedback').textContent='ℹ️ A resposta certa é: '+questions[idx][1][correct]}}
+function nextQuestion(){if(!answered){document.getElementById('feedback').textContent='Escolha uma resposta primeiro.';return}idx++;if(idx<questions.length)showQuestion();else{document.getElementById('qtitle').textContent='Desafio concluído!';document.getElementById('question').textContent=`A sua pontuação: ${score} de ${questions.length}. Obrigado por jogar!`;document.getElementById('answers').innerHTML='';document.getElementById('feedback').textContent='Continue a aprender e a divertir-se.'}}
+function closeQuiz(){document.getElementById('quiz').classList.remove('active')}
+</script>
+</body></html>
