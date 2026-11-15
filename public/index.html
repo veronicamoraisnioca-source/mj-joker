@@ -49,6 +49,19 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:12px;pa
 .quiz.active{display:block}.quiz h2{color:var(--gold)}
 .answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answers button{padding:13px;border:1px solid #3994ff;border-radius:10px;background:#0b2d75;color:white;font-weight:bold;cursor:pointer}
 .answers button:hover{background:#1454c5}.feedback{min-height:28px;font-weight:bold;color:var(--gold)}
+
+.payment-banner{margin:18px 0;padding:20px;border:2px solid #ffcf18;border-radius:18px;background:linear-gradient(120deg,#061746,#102f79);text-align:center;box-shadow:0 0 20px #006aff44}
+.payment-banner h2{margin:0 0 8px;color:#ffda35}.payment-banner p{margin:8px 0}
+.payment-modal{display:none;position:fixed;inset:0;z-index:30;background:#000b24;align-items:center;justify-content:center;padding:16px}
+.payment-modal.open{display:flex}.payment-box{width:min(480px,100%);background:#06133e;border:2px solid #2386ff;border-radius:18px;padding:22px;box-shadow:0 0 30px #007bff88}
+.payment-box h2{color:#ffda35;margin-top:0}.payment-box .price{font-size:34px;font-weight:1000;color:#ffda35}
+.payment-box p{line-height:1.5}.payment-box button{margin:5px}
+.status{padding:10px;border-radius:10px;background:#0c2b67;color:#fff;min-height:40px}
+.locked{opacity:.88}
+
+
+.signup-panel{margin:18px 0;padding:20px;border:2px solid #2386ff;border-radius:18px;background:linear-gradient(130deg,#061746,#102f79);box-shadow:0 0 20px #006aff44}.signup-panel h2{color:#ffda35;text-align:center;margin-top:0}.signup-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:760px;margin:14px auto}.signup-form label{display:flex;flex-direction:column;gap:6px;font-weight:bold}.signup-form input:not([type=checkbox]){padding:12px;border-radius:9px;border:1px solid #5baaff;background:#020b2d;color:white}.signup-form .wide{grid-column:1/-1}.signup-form button{justify-self:center}.signup-note{font-size:13px;color:#dce8ff;text-align:center}.admin-demo{margin:12px auto;padding:12px;border:1px solid #176dff;border-radius:12px;background:#020b2d;max-width:760px}@media(max-width:600px){.signup-form{grid-template-columns:1fr}.signup-form .wide{grid-column:auto}}
+
 @media(max-width:800px){.nav{flex-wrap:wrap;justify-content:center}nav{order:3;width:100%;justify-content:space-around}.hero{grid-template-columns:1fr 2fr;}.hero-side{grid-column:1/-1}.category-strip{grid-template-columns:repeat(4,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.info{grid-template-columns:1fr}.info article+article{border-left:0;border-top:1px solid #4d8cff;padding:14px 0 0}}
 @media(max-width:430px){.actions{width:100%;justify-content:center}.hero{grid-template-columns:1fr;padding:15px}.jester{font-size:75px}.hero-logo{font-size:58px}.hero-side{font-size:22px}.card{min-height:165px}.card .emoji{font-size:64px}.answers{grid-template-columns:1fr}footer{flex-direction:column;text-align:center}}
 </style>
@@ -56,7 +69,7 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:12px;pa
 <body>
 <header><div class="nav wrap">
 <a class="brand" href="#"><span>👑</span> MJ JOKER</a>
-<nav><a href="#inicio">🏠<br>Início</a><a href="#jogos">🎮<br>Jogos</a><a href="#ranking">🏆<br>Ranking</a><a href="#sobre">ℹ️<br>Sobre</a><a href="#contacto">🎧<br>Contacto</a></nav>
+<nav><a href="#inicio">🏠<br>Início</a><a href="#inscricao">📝<br>Inscrição</a><a href="#jogos">🎮<br>Jogos</a><a href="#ranking">🏆<br>Ranking</a><a href="#sobre">ℹ️<br>Sobre</a><a href="#contacto">🎧<br>Contacto</a></nav>
 <div class="actions"><a class="btn" href="#jogos">▶ Jogar</a><a class="btn gold" href="#jogos">Entrar</a></div>
 </div></header>
 <main class="wrap" id="inicio">
@@ -68,6 +81,16 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:12px;pa
 <section class="category-strip" aria-label="Categorias">
 <a href="#jogos"><span>🧠</span>Conhecimentos<br>Gerais</a><a href="#jogos"><span>🌍</span>Geografia</a><a href="#jogos"><span>🇲🇿</span>Cultura<br>Moçambicana</a><a href="#jogos"><span>⚽</span>Desporto</a><a href="#jogos"><span>📚</span>Português</a><a href="#jogos"><span>🧪</span>Ciência e<br>Tecnologia</a><a href="#jogos"><span>🏛️</span>História</a><a href="#jogos"><span>🏆</span>Desafios<br>Especiais</a>
 </section>
+
+<section class="payment-banner" id="acesso">
+<h2>🔐 ACESSO COMPLETO MJ JOKER</h2>
+<p>O acesso completo está apresentado aqui em modo de demonstração.</p>
+<p><strong class="price">185 MT</strong> — valor ilustrativo de pagamento único</p>
+<button class="btn gold" onclick="openPayment()">Ver opções de acesso</button>
+<p class="badge">Nenhuma transferência real é feita nesta demonstração.</p>
+</section>
+
+<section class="signup-panel" id="inscricao"><h2>📝 INSCRIÇÃO MJ JOKER</h2><p style="text-align:center">Crie o seu perfil para participar nos desafios.</p><form class="signup-form" id="signupForm"><label>Nome do jogador<input id="playerName" required maxlength="60" placeholder="O seu nome"></label><label>Número de telemóvel<input id="playerPhone" required inputmode="tel" maxlength="20" placeholder="Número de contacto"></label><label class="wide"><span><input id="ageConfirm" type="checkbox" required style="width:auto"> Confirmo que tenho 18 anos ou mais.</span></label><label class="wide"><span><input id="termsConfirm" type="checkbox" required style="width:auto"> Aceito as regras de utilização do MJ JOKER.</span></label><button class="btn gold" type="submit">Enviar inscrição</button></form><p class="signup-note" id="signupStatus" aria-live="polite">Demonstração: os dados ficam guardados apenas neste navegador.</p><div class="admin-demo"><strong>Estado da inscrição:</strong> <span id="approvalState">Ainda não inscrito.</span><p class="signup-note">Esta demonstração não envia dados para um administrador nem processa pagamentos.</p></div></section>
 <h2 class="section-title" id="jogos">⭐ NOSSOS JOGOS ⭐</h2>
 <section class="grid">
 <div class="card"><div class="emoji">🧠</div><div><h3>Quiz de conhecimentos gerais</h3><button onclick="startQuiz('geral')">Jogar Agora ▶</button></div></div>
@@ -87,6 +110,20 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:12px;pa
 </section>
 </main>
 <footer class="wrap"><strong class="brand">👑 MJ JOKER</strong><span>🛡️ Jogue com responsabilidade e respeito!</span><span>© 2026 MJ JOKER. Todos os direitos reservados.</span></footer>
+
+<div class="payment-modal" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="payTitle">
+ <div class="payment-box">
+  <h2 id="payTitle">🔐 Acesso completo MJ JOKER</h2>
+  <p class="price">185 MT</p>
+  <p>Pagamento único ilustrativo para desbloquear todas as categorias. Para aceitar pagamentos reais, o site precisa de integração com um fornecedor autorizado e gestão por um adulto responsável.</p>
+  <p class="status" id="paymentStatus">Modo de demonstração: não introduza PIN, palavra-passe, dados bancários ou códigos de confirmação.</p>
+  <p id="accessLabel">Acesso completo bloqueado (demonstração).</p>
+  <button class="btn gold" onclick="simulatePayment()">Simular acesso (sem pagar)</button>
+  <button class="btn" onclick="closePayment()">Fechar</button>
+  <button class="btn" onclick="resetDemoAccess()">Repor demonstração</button>
+ </div>
+</div>
+
 <script>
 const bank={
 geral:[["Qual é o maior planeta do Sistema Solar?",["Terra","Júpiter","Marte","Vénus"],1],["Quantos lados tem um hexágono?",["5","6","7","8"],1]],
@@ -98,8 +135,27 @@ science:[["Qual é o planeta conhecido como planeta vermelho?",["Vénus","Marte"
 history:[["Em que ano Moçambique tornou-se independente?",["1974","1975","1980","1990"],1]],
 special:[["Quanto é 12 × 8?",["86","92","96","108"],2]]
 };
+document.getElementById('signupForm').addEventListener('submit',function(e){e.preventDefault();const name=document.getElementById('playerName').value.trim();const phone=document.getElementById('playerPhone').value.trim();const rec={name,phone,status:'Pendente (demonstração)'};localStorage.setItem('mjjoker_signup',JSON.stringify(rec));document.getElementById('signupStatus').textContent='Inscrição guardada apenas neste navegador. Não foi enviada para um administrador.';document.getElementById('approvalState').textContent=rec.status;});const oldSignup=localStorage.getItem('mjjoker_signup');if(oldSignup){try{const rec=JSON.parse(oldSignup);document.getElementById('approvalState').textContent=rec.status;document.getElementById('playerName').value=rec.name;document.getElementById('playerPhone').value=rec.phone;}catch(e){}}
+
 let questions=[],idx=0,score=0,answered=false;
-function startQuiz(key){questions=bank[key]||bank.geral;idx=0;score=0;document.getElementById('quiz').classList.add('active');document.getElementById('quiz').scrollIntoView({behavior:'smooth'});showQuestion()}
+let demoAccess = localStorage.getItem('mjjoker_demo_access') === 'yes';
+function openPayment(){document.getElementById('paymentModal').classList.add('open')}
+function closePayment(){document.getElementById('paymentModal').classList.remove('open')}
+function simulatePayment(){
+  demoAccess=true;
+  localStorage.setItem('mjjoker_demo_access','yes');
+  document.getElementById('paymentStatus').textContent='Acesso de demonstração ativado neste navegador. Nenhum pagamento foi realizado.';
+  document.getElementById('accessLabel').textContent='Acesso de demonstração ativo neste navegador.';
+  setTimeout(closePayment,1800);
+}
+function resetDemoAccess(){
+  demoAccess=false;localStorage.removeItem('mjjoker_demo_access');
+  document.getElementById('accessLabel').textContent='Acesso completo bloqueado (demonstração).';
+  document.getElementById('paymentStatus').textContent='Estado de demonstração reiniciado.';
+}
+function startQuiz(key){
+if(!demoAccess){openPayment();return}
+questions=bank[key]||bank.geral;idx=0;score=0;document.getElementById('quiz').classList.add('active');document.getElementById('quiz').scrollIntoView({behavior:'smooth'});showQuestion()}
 function showQuestion(){answered=false;let q=questions[idx];document.getElementById('qtitle').textContent=`Desafio ${idx+1} de ${questions.length}`;document.getElementById('question').textContent=q[0];document.getElementById('feedback').textContent='';let box=document.getElementById('answers');box.innerHTML='';q[1].forEach((a,i)=>{let b=document.createElement('button');b.textContent=a;b.onclick=()=>answer(i);box.appendChild(b)})}
 function answer(i){if(answered)return;answered=true;let correct=questions[idx][2];if(i===correct){score++;document.getElementById('feedback').textContent='✅ Resposta correta!'}else{document.getElementById('feedback').textContent='ℹ️ A resposta certa é: '+questions[idx][1][correct]}}
 function nextQuestion(){if(!answered){document.getElementById('feedback').textContent='Escolha uma resposta primeiro.';return}idx++;if(idx<questions.length)showQuestion();else{document.getElementById('qtitle').textContent='Desafio concluído!';document.getElementById('question').textContent=`A sua pontuação: ${score} de ${questions.length}. Obrigado por jogar!`;document.getElementById('answers').innerHTML='';document.getElementById('feedback').textContent='Continue a aprender e a divertir-se.'}}
